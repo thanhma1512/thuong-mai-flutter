@@ -23,7 +23,7 @@ class OrderHistoryScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text("❌ Bạn chưa có đơn hàng nào."));
+            return Center(child: Text("❌ Bạn vẫn chưa có đơn hàng nào."));
           }
 
           final orders = snapshot.data!.docs;
