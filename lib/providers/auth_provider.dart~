@@ -17,7 +17,14 @@ class AuthProvider with ChangeNotifier {
   UserModel? get currentUser => _currentUser; // ✅ Getter cho currentUser
   String? get errorMessage => _errorMessage;
 
+  UserModel? _user; // Thông tin người dùng
 
+  UserModel? get user => _user; // Thêm getter 'user'
+
+  void setUser(UserModel user) {
+    _user = user;
+    notifyListeners();
+  }
   AuthProvider() {
     _loadCurrentUser(); // ✅ Tải dữ liệu khi khởi tạo
   }

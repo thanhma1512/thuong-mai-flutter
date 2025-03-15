@@ -48,11 +48,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   /// 🏦 Tạo dữ liệu QR Code
   String generateQRCodeData(double amount) {
-    return "Ngân hàng: Vietcombank\n"
-        "Số tài khoản: 0123456789\n"
-        "Chủ tài khoản: Nguyễn Văn A\n"
-        "Số tiền: ${formatCurrency(amount)}\n"
-        "Nội dung: Thanh toán đơn hàng";
+    String bank = "970422"; // Mã ngân hàng MB Bank
+    String account = "0707023077"; // Số tài khoản nhận tiền
+    String owner = "MA KIEN THANH"; // Tên chủ tài khoản
+    String content = Uri.encodeComponent("Thanh toan don hang"); // Nội dung chuyển khoản
+    String qrData =
+        "https://img.vietqr.io/image/$bank-$account-print.png?amount=$amount&addInfo=$content&accountName=$owner";
+    return qrData;
   }
 
   @override
@@ -163,6 +165,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
+                        // ✅ Lưu đơn hàng vào lịch sử trước khi xóa giỏ hàng
+                        cartProvider.saveOrder(
+                          _nameController.text,
+                          _phoneController.text,
+                          _addressController.text,
+                          "Chuyển khoản ngân hàng",
+                        );
+
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text("✅ Thanh toán thành công!")),
                         );

@@ -14,6 +14,7 @@ import 'screens/add_product_screen.dart';
 import 'firebase_options.dart';
 import 'screens/edit_product_screen.dart';
 import 'screens/cart_screen.dart';
+import 'screens/account_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
           '/edit_product_screen': (context) => EditProductScreen(),
           '/cart': (context) => CartScreen(),
           '/order_history': (context) => OrderHistoryScreen(),
+          '/account': (context) => AccountScreen(),
         },
       ),
     );
